@@ -23,4 +23,15 @@ public class PlayerScript : MonoBehaviour {
 		rb.AddForce (Vector3.forward * vert);
 
 	}
+
+	void OnTriggerEnter (Collider intruder) {
+		if (intruder.tag == "Coin") {
+			Destroy (intruder.gameObject);
+		}
+	}
+//	void onTriggerEnter (Collision intruder) {
+//		if (intruder.gameObject.tag == "Coin") {
+//			Debug.Log ("Hey!  I'm a coin!");
+//		}
+//	}
 }
