@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
 	private float horiz;
 	private float vert;
 	private Rigidbody rb;
+	public int score = 0;
+	public Text scoreText;
+
 
 	[Range(400,900)] public int speed;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		scoreText.text = "Score: " + score;
 	}
 	
 	// Update is called once per frame
@@ -27,11 +32,9 @@ public class PlayerScript : MonoBehaviour {
 	void OnTriggerEnter (Collider intruder) {
 		if (intruder.tag == "Coin") {
 			Destroy (intruder.gameObject);
+			score += intruder.GetComponent<CoinScript>().value;
+			scoreText.text = "Score: " + score;
+
 		}
 	}
-//	void onTriggerEnter (Collision intruder) {
-//		if (intruder.gameObject.tag == "Coin") {
-//			Debug.Log ("Hey!  I'm a coin!");
-//		}
-//	}
 }
